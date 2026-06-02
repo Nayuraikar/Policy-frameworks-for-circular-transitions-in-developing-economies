@@ -92,30 +92,54 @@ export default function App() {
 }
 
 function Diagnostics() {
+  const tooltips = {
+    'EC': "Environmental Concern: Citizens' care for local environmental issues.",
+    'AW': "Policy Awareness: How well citizens know about local recycling schemes.",
+    'FI': "Financial Incentives: Rebates, tax breaks, or deposit-refund schemes.",
+    'PC': "Privacy Concern: Citizens' worry about data tracking.",
+    'ATT': "Attitude: Overall positive feeling towards recycling.",
+    'PBC': "Perceived Behavioral Control: How capable citizens feel they are to recycle. Boosted heavily by awareness campaigns.",
+    'RI': "Recycling Intention: The predicted adoption probability."
+  }
+
+  const renderPath = (path) => {
+    const parts = path.split(' → ')
+    return (
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+        <span className="tooltip-container" data-tip={tooltips[parts[0]]}>{parts[0]}</span>
+        <span style={{ color: 'var(--hint)', fontSize: 10 }}>→</span>
+        <span className="tooltip-container" data-tip={tooltips[parts[1]]}>{parts[1]}</span>
+      </div>
+    )
+  }
+
   const rows = [
-    ['EC → ATT', '+0.483', '***', '✓'],
-    ['AW → ATT', '+0.320', '***', '✓'],
-    ['FI → ATT', '+0.118', '*',   '✓'],
-    ['PC → ATT', '−0.150', '**',  '✓'],
-    ['AW → PBC', '+0.769', '***', '✓'],
-    ['FI → PBC', '+0.145', '**',  '✓'],
-    ['EC → PBC', '+0.050', 'ns',  '✗'],
-    ['ATT → RI', '+0.411', '**',  '✓'],
-    ['PBC → RI', '+0.402', '***', '✓'],
-    ['FI → RI',  '+0.216', '***', '✓'],
-    ['PC → RI',  '−0.115', '*',   '✓'],
+    ['EC → ATT', '+0.483', 'High',     '✓'],
+    ['AW → ATT', '+0.320', 'High',     '✓'],
+    ['FI → ATT', '+0.118', 'Low',      '✓'],
+    ['PC → ATT', '−0.150', 'Medium',   '✓'],
+    ['AW → PBC', '+0.769', 'High',     '✓'],
+    ['FI → PBC', '+0.145', 'Medium',   '✓'],
+    ['EC → PBC', '+0.050', 'Not Sig.', '✗'],
+    ['ATT → RI', '+0.411', 'Medium',   '✓'],
+    ['PBC → RI', '+0.402', 'High',     '✓'],
+    ['FI → RI',  '+0.216', 'High',     '✓'],
+    ['PC → RI',  '−0.115', 'Low',      '✓'],
   ]
   return (
     <div style={{ background:'var(--surface)', border:'1px solid var(--border)',
-                  borderRadius:12, overflow:'hidden' }}>
+                  borderRadius:12 }}>
       <div style={{ padding:'14px 20px', borderBottom:'1px solid var(--border)',
                     fontSize:12, color:'var(--muted)', letterSpacing:'0.07em',
                     textTransform:'uppercase' }}>
         SEM path coefficients — lavaan output (n=252)
+        <span style={{ marginLeft: 10, fontSize: 10, fontWeight: 400, textTransform: 'none', color: 'var(--hint)' }}>
+          (Hover over acronyms for details)
+        </span>
       </div>
       <table style={{ width:'100%', borderCollapse:'collapse', fontSize:13 }}>
         <thead>
-          <tr style={{ background:'var(--surface2)' }}>
+          <tr style={{ background:'var(--white)' }}>
             {['Path','β','Sig.','Supported'].map(h => (
               <th key={h} style={{ padding:'10px 20px', textAlign:'left',
                                    color:'var(--hint)', fontWeight:500,
@@ -127,7 +151,9 @@ function Diagnostics() {
         <tbody>
           {rows.map(([path,beta,sig,sup]) => (
             <tr key={path} style={{ borderTop:'1px solid var(--border)' }}>
-              <td style={{ padding:'10px 20px', fontFamily:'monospace', color:'var(--text)' }}>{path}</td>
+              <td style={{ padding:'10px 20px', fontFamily:'monospace', color:'var(--text)' }}>
+                {renderPath(path)}
+              </td>
               <td style={{ padding:'10px 20px', color: beta.startsWith('+') ? 'var(--green)' : 'var(--red)', fontFamily:'monospace' }}>{beta}</td>
               <td style={{ padding:'10px 20px', color:'var(--muted)' }}>{sig}</td>
               <td style={{ padding:'10px 20px', color: sup==='✓' ? 'var(--green)' : 'var(--red)' }}>{sup}</td>

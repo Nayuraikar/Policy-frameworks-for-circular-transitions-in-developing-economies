@@ -43,11 +43,11 @@ ${pcRec}
 ### SEM Validation
 | Path | β | Significance |
 |------|---|---|
-| FI → RI (direct) | +0.216 | *** |
-| PC → RI (direct) | −0.115 | * |
-| ATT → RI | +0.411 | ** |
-| PBC → RI | +0.402 | *** |
-| AW → PBC | +0.769 | *** |
+| FI → RI (direct) | +0.216 | High |
+| PC → RI (direct) | −0.115 | Low |
+| ATT → RI | +0.411 | Medium |
+| PBC → RI | +0.402 | High |
+| AW → PBC | +0.769 | High |
 
 *Based on n=252, India urban sample. All projections are simulation estimates.*`
 
@@ -166,11 +166,11 @@ ${pcRec}
               </thead>
               <tbody>
                 {[
-                  ['FI → RI (direct)', '+0.216', '***'],
-                  ['PC → RI (direct)', '−0.115', '*'],
-                  ['ATT → RI', '+0.411', '**'],
-                  ['PBC → RI', '+0.402', '***'],
-                  ['AW → PBC', '+0.769', '***'],
+                  ['FI → RI (direct)', '+0.216', 'High'],
+                  ['PC → RI (direct)', '−0.115', 'Low'],
+                  ['ATT → RI', '+0.411', 'Medium'],
+                  ['PBC → RI', '+0.402', 'High'],
+                  ['AW → PBC', '+0.769', 'High'],
                 ].map(([path, beta, sig], i) => (
                   <tr key={i} style={{ borderBottom: i !== 4 ? '1px solid var(--border)' : 'none' }}>
                     <td style={{ padding: '12px 16px', fontWeight: 500, fontFamily: 'var(--mono)', color: 'var(--text)' }}>{path}</td>
