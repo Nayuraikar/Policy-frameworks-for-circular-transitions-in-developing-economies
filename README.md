@@ -40,3 +40,9 @@ The `backend/models/` directory contains:
 * `scaler.pkl`: The feature scaler used to normalize inputs before prediction.
 
 *Note: These files are managed via Git Large File Storage (LFS).*
+
+## Statistical Data Analysis (SEM & Machine Learning)
+
+The `data_analysis/` directory contains the complete raw dataset, R scripts (00 through 06), and the Python machine learning notebook (`07_ml_predictive_model.ipynb`) used for the initial research and statistical validation. 
+
+Please refer to `data_analysis/README.md` for specific instructions on running the R SEM models, Bootstrapping mediation models, and replicating the Jupyter Notebook metrics.

@@ -1,0 +1,33 @@
+Project: Policy Frameworks for Circular Transitions in Developing Economies
+Final Submissions Directory
+
+This folder contains all the necessary data, analysis scripts, models, and documentation for the project.
+
+=== 1. Survey Data (Raw & Clean) ===
+* survey_responses_raw.csv - The original, untouched survey responses exported from Google Forms.
+* survey_clean.csv - The final, cleaned dataset (N=252) used for all SEM and Machine Learning analysis.
+* pilot_test_raw.csv - The initial pilot dataset used to test instrument reliability.
+* pilot_200.csv - Additional pilot data/backup.
+
+=== 2. Analysis Scripts (R Pipeline) ===
+* 00_project_setup.R - Configuration script that loads required libraries (lavaan, psych, etc.) and sets the working directory.
+* 01_data_cleaning.R - Cleans the raw survey data, imputes missing values, and recodes demographics.
+* 02_descriptives_and_normality.R - Generates descriptive statistics and checks multivariate normality.
+* 03_confirmatory_factor_analysis.R - Runs Confirmatory Factor Analysis (CFA) to validate the measurement model.
+* 04_sem_structural_model.R - The core script testing the hypotheses via Structural Equation Modeling (SEM).
+* 05_sem_mediation.R - Tests indirect effects (mediation) via bootstrapping.
+* 06_sem_multigroup_moderation.R - Multi-Group Analysis to test how age and prior experience moderate behavior.
+
+=== 3. Machine Learning (Python) ===
+* 07_ml_predictive_model.ipynb - Jupyter Notebook containing the XGBoost classification model training and evaluation.
+
+=== 4. Analysis Artifacts ===
+* sem_path_coefficients.csv - Extracted path coefficients (beta values) and p-values from the SEM hypothesis testing.
+* recycling_intention_model.pkl - The trained XGBoost predictive model for the Circular Policy AI Simulator.
+* scaler.pkl - The StandardScaler artifact required to format inputs for the XGBoost model.
+* Construct Correlation Matrix.png - Visual correlation matrix of the 7 psychological constructs.
+
+=== 5. Pilot Testing Scripts ===
+* pilot_00_setup.R - Configuration script for the pilot testing environment.
+* pilot_01_reliability_analysis.R - Calculates Cronbach's Alpha to ensure survey item reliability on pilot data.
+* pilot_02_quality_control.R - Filters out low-effort responses from the pilot dataset.
