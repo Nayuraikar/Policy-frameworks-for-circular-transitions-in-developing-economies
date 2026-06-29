@@ -1,0 +1,623 @@
+# Comprehensive Analysis Results
+
+Below is the complete execution log for all analytical scripts in the pipeline, sequentially executed from `01_data_cleaning.R` through `07_ml_predictive_model.py`.
+
+```text
+=== 01 DATA CLEANING ===
+This is lavaan 0.6-21
+lavaan is FREE software! Please report any bugs.
+
+Attaching package: ‘lavaan’
+
+The following object is masked from ‘package:psych’:
+
+    cor2cov
+
+ 
+###############################################################################
+This is semTools 0.5-8
+All users of R (or SEM) are invited to submit functions or ideas for functions.
+###############################################################################
+
+Attaching package: ‘semTools’
+
+The following objects are masked from ‘package:psych’:
+
+    reliability, skew
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘ggplot2’
+
+The following objects are masked from ‘package:psych’:
+
+    %+%, alpha
+
+
+Attaching package: ‘readr’
+
+The following object is masked from ‘package:semTools’:
+
+    clipboard
+
+corrplot 0.95 loaded
+Setup complete. All libraries loaded and directories mapped.
+
+Loading raw survey data...
+Rows: 253 Columns: 43
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): Timestamp, What is your age group?, What is your highest level of ...
+dbl (35): I am very concerned about the current state of the environment in ...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Removed straight-liners: 1 
+
+=== FINAL DATA QUALITY REPORT ===
+Starting Raw N: 253 
+Final Clean N: 252 
+Target N (minimum): 250 
+Demographics parsed successfully: No missing values detected.
+Status: [PASS - proceed to analysis] 
+
+Clean data saved successfully as 'survey_clean.csv'.
+
+=== 02 DESCRIPTIVES & NORMALITY ===
+This is lavaan 0.6-21
+lavaan is FREE software! Please report any bugs.
+
+Attaching package: ‘lavaan’
+
+The following object is masked from ‘package:psych’:
+
+    cor2cov
+
+ 
+###############################################################################
+This is semTools 0.5-8
+All users of R (or SEM) are invited to submit functions or ideas for functions.
+###############################################################################
+
+Attaching package: ‘semTools’
+
+The following objects are masked from ‘package:psych’:
+
+    reliability, skew
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘ggplot2’
+
+The following objects are masked from ‘package:psych’:
+
+    %+%, alpha
+
+
+Attaching package: ‘readr’
+
+The following object is masked from ‘package:semTools’:
+
+    clipboard
+
+corrplot 0.95 loaded
+Setup complete. All libraries loaded and directories mapped.
+
+Loading clean dataset...
+Rows: 252 Columns: 53
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): age, education, occupation, city, prior_recycling, infrastructure,...
+dbl (45): EC1, EC2, EC3, EC4, EC5, AW1, AW2, AW3, AW4, AW5, FI1, FI2, FI3, F...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+=== DESCRIPTIVE STATISTICS (Item Level) ===
+     mean   sd  skew kurtosis min max
+EC1  3.66 0.95 -0.62     0.18   1   5
+EC2  3.74 0.93 -0.41    -0.29   1   5
+EC3  3.69 0.89 -0.33    -0.16   1   5
+EC4  3.74 0.90 -0.38    -0.16   1   5
+EC5  3.75 0.96 -0.59     0.07   1   5
+AW1  3.23 1.08 -0.10    -0.52   1   5
+AW2  3.24 1.03 -0.13    -0.35   1   5
+AW3  3.39 1.04 -0.08    -0.62   1   5
+AW4  3.22 1.05 -0.04    -0.55   1   5
+AW5  3.17 1.07  0.00    -0.57   1   5
+FI1  3.82 0.86 -0.93     1.34   1   5
+FI2  3.88 0.86 -0.64     0.27   1   5
+FI3  3.80 0.82 -0.44    -0.01   1   5
+FI4  3.89 0.81 -0.56     0.20   1   5
+FI5  3.81 0.84 -0.58     0.31   1   5
+PC1  2.77 1.05  0.60    -0.20   1   5
+PC2  2.83 0.97  0.53    -0.30   1   5
+PC3  2.83 0.99  0.60    -0.10   1   5
+PC4  2.85 0.98  0.52    -0.27   1   5
+PC5  2.71 1.00  0.47    -0.34   1   5
+ATT1 3.72 0.95 -0.48    -0.19   1   5
+ATT2 3.73 0.91 -0.39    -0.34   1   5
+ATT3 3.69 0.90 -0.15    -0.50   1   5
+ATT4 3.73 0.93 -0.35    -0.60   1   5
+ATT5 3.73 0.91 -0.41    -0.19   1   5
+PBC1 3.30 1.08 -0.23    -0.37   1   5
+PBC2 3.24 1.08 -0.20    -0.52   1   5
+PBC3 3.36 1.03 -0.08    -0.50   1   5
+PBC4 3.21 1.03 -0.08    -0.34   1   5
+PBC5 3.30 1.03 -0.13    -0.41   1   5
+RI1  3.52 1.05 -0.29    -0.54   1   5
+RI2  3.48 1.07 -0.35    -0.50   1   5
+RI3  3.48 1.03 -0.39    -0.28   1   5
+RI4  3.57 1.04 -0.48    -0.32   1   5
+RI5  3.52 1.05 -0.37    -0.41   1   5
+
+=== MARDIA'S MULTIVARIATE NORMALITY TEST ===
+
+=== CONSTRUCT-LEVEL CORRELATIONS ===
+         EC_mean AW_mean FI_mean PC_mean ATT_mean PBC_mean RI_mean
+EC_mean    1.000   0.672   0.286  -0.036    0.707    0.613   0.553
+AW_mean    0.672   1.000   0.233  -0.167    0.660    0.786   0.656
+FI_mean    0.286   0.233   1.000  -0.050    0.326    0.328   0.453
+PC_mean   -0.036  -0.167  -0.050   1.000   -0.218   -0.196  -0.289
+ATT_mean   0.707   0.660   0.326  -0.218    1.000    0.632   0.708
+PBC_mean   0.613   0.786   0.328  -0.196    0.632    1.000   0.724
+RI_mean    0.553   0.656   0.453  -0.289    0.708    0.724   1.000
+
+=== 03 CFA (RELIABILITY & VALIDITY) ===
+This is lavaan 0.6-21
+lavaan is FREE software! Please report any bugs.
+
+Attaching package: ‘lavaan’
+
+The following object is masked from ‘package:psych’:
+
+    cor2cov
+
+ 
+###############################################################################
+This is semTools 0.5-8
+All users of R (or SEM) are invited to submit functions or ideas for functions.
+###############################################################################
+
+Attaching package: ‘semTools’
+
+The following objects are masked from ‘package:psych’:
+
+    reliability, skew
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘ggplot2’
+
+The following objects are masked from ‘package:psych’:
+
+    %+%, alpha
+
+
+Attaching package: ‘readr’
+
+The following object is masked from ‘package:semTools’:
+
+    clipboard
+
+corrplot 0.95 loaded
+Setup complete. All libraries loaded and directories mapped.
+
+Loading clean dataset for CFA...
+Rows: 252 Columns: 53
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): age, education, occupation, city, prior_recycling, infrastructure,...
+dbl (45): EC1, EC2, EC3, EC4, EC5, AW1, AW2, AW3, AW4, AW5, FI1, FI2, FI3, F...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+Running CFA model. This may take a few seconds...
+
+=== MODEL FIT INDICES ===
+           cfi            tli          rmsea rmsea.ci.lower rmsea.ci.upper 
+         0.936          0.930          0.062          0.057          0.068 
+          srmr 
+         0.040 
+
+[TARGETS: CFI/TLI > 0.90 | RMSEA < 0.08 | SRMR < 0.08]
+
+=== STANDARDIZED FACTOR LOADINGS ===
+ Construct Item   Loading p_value
+        EC  EC1 0.8537639       0
+        EC  EC2 0.8738392       0
+        EC  EC3 0.8622786       0
+        EC  EC4 0.8770745       0
+        EC  EC5 0.8434859       0
+        AW  AW1 0.8656442       0
+        AW  AW2 0.8816687       0
+        AW  AW3 0.8527713       0
+        AW  AW4 0.7959795       0
+        AW  AW5 0.8101813       0
+        FI  FI1 0.8160308       0
+        FI  FI2 0.7947764       0
+        FI  FI3 0.8083265       0
+        FI  FI4 0.8265824       0
+        FI  FI5 0.7478288       0
+        PC  PC1 0.8829709       0
+        PC  PC2 0.8957467       0
+        PC  PC3 0.8845406       0
+        PC  PC4 0.7948317       0
+        PC  PC5 0.7878642       0
+       ATT ATT1 0.8389815       0
+       ATT ATT2 0.8780194       0
+       ATT ATT3 0.8527456       0
+       ATT ATT4 0.8793222       0
+       ATT ATT5 0.7803025       0
+       PBC PBC1 0.8930471       0
+       PBC PBC2 0.8806753       0
+       PBC PBC3 0.9012092       0
+       PBC PBC4 0.8685934       0
+       PBC PBC5 0.8048766       0
+        RI  RI1 0.8975354       0
+        RI  RI2 0.9074585       0
+        RI  RI3 0.9003846       0
+        RI  RI4 0.8669269       0
+        RI  RI5 0.8589139       0
+
+[TARGET: All Loadings ideally > 0.60 or 0.70. Anything < 0.50 is a red flag]
+
+=== RELIABILITY (CR) & CONVERGENT VALIDITY (AVE) ===
+       EC    AW    FI    PC   ATT   PBC    RI
+CR  0.936 0.921 0.898 0.927 0.927 0.940 0.948
+AVE 0.742 0.708 0.638 0.724 0.717 0.758 0.786
+
+[TARGETS: CR > 0.70 | AVE > 0.50]
+
+=== HTMT DISCRIMINANT VALIDITY ===
+       EC    AW    FI    PC   ATT   PBC    RI
+EC  1.000                                    
+AW  0.718 1.000                              
+FI  0.301 0.244 1.000                        
+PC  0.030 0.159 0.048 1.000                  
+ATT 0.759 0.710 0.350 0.227 1.000            
+PBC 0.651 0.842 0.352 0.199 0.676 1.000      
+RI  0.586 0.699 0.486 0.306 0.756 0.766 1.000
+
+[TARGET: All values < 0.85 (Strict) or < 0.90 (Lenient)]
+
+=== 04 STRUCTURAL MODEL (H1-H6) ===
+This is lavaan 0.6-21
+lavaan is FREE software! Please report any bugs.
+
+Attaching package: ‘lavaan’
+
+The following object is masked from ‘package:psych’:
+
+    cor2cov
+
+ 
+###############################################################################
+This is semTools 0.5-8
+All users of R (or SEM) are invited to submit functions or ideas for functions.
+###############################################################################
+
+Attaching package: ‘semTools’
+
+The following objects are masked from ‘package:psych’:
+
+    reliability, skew
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘ggplot2’
+
+The following objects are masked from ‘package:psych’:
+
+    %+%, alpha
+
+
+Attaching package: ‘readr’
+
+The following object is masked from ‘package:semTools’:
+
+    clipboard
+
+corrplot 0.95 loaded
+Setup complete. All libraries loaded and directories mapped.
+
+Loading clean dataset for SEM...
+Rows: 252 Columns: 53
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): age, education, occupation, city, prior_recycling, infrastructure,...
+dbl (45): EC1, EC2, EC3, EC4, EC5, AW1, AW2, AW3, AW4, AW5, FI1, FI2, FI3, F...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+Running full Structural Equation Model. This may take a moment...
+
+=== STRUCTURAL MODEL FIT INDICES ===
+  cfi   tli rmsea  srmr 
+0.936 0.930 0.062 0.042 
+
+=== HYPOTHESIS TESTING RESULTS (Path Coefficients) ===
+ Dependent Predictor        Beta      p_value Significance Supported
+       ATT        EC  0.48329610 4.971578e-06          ***       YES
+       ATT        AW  0.32040303 3.218224e-04          ***       YES
+       ATT        FI  0.11808231 1.601088e-02            *       YES
+       ATT        PC -0.14976503 9.301296e-03           **       YES
+       PBC        EC  0.04978599 5.600809e-01           ns        NO
+       PBC        AW  0.76902510 0.000000e+00          ***       YES
+       PBC        FI  0.14482605 1.148575e-03           **       YES
+        RI       ATT  0.41069170 2.594900e-03           **       YES
+        RI       PBC  0.40152449 1.211077e-04          ***       YES
+        RI        EC -0.11454787 3.502279e-01           ns        NO
+        RI        AW  0.08004915 4.361102e-01           ns        NO
+        RI        FI  0.21602819 2.311475e-07          ***       YES
+        RI        PC -0.11518124 2.587119e-02            *       YES
+
+=== R-SQUARED (Variance Explained) ===
+  EC1   EC2   EC3   EC4   EC5   AW1   AW2   AW3   AW4   AW5   FI1   FI2   FI3 
+0.729 0.763 0.743 0.769 0.711 0.747 0.776 0.726 0.634 0.657 0.666 0.632 0.653 
+  FI4   FI5   PC1   PC2   PC3   PC4   PC5  ATT1  ATT2  ATT3  ATT4  ATT5  PBC1 
+0.683 0.558 0.780 0.803 0.783 0.631 0.620 0.705 0.771 0.727 0.773 0.609 0.799 
+ PBC2  PBC3  PBC4  PBC5   RI1   RI2   RI3   RI4   RI5   ATT   PBC    RI 
+0.775 0.812 0.754 0.648 0.804 0.822 0.809 0.749 0.736 0.676 0.734 0.740 
+
+[Target: RI R-squared ideally > 0.50]
+
+Path coefficients saved successfully.
+
+=== 05 MEDIATION (H7) ===
+This is lavaan 0.6-21
+lavaan is FREE software! Please report any bugs.
+
+Attaching package: ‘lavaan’
+
+The following object is masked from ‘package:psych’:
+
+    cor2cov
+
+ 
+###############################################################################
+This is semTools 0.5-8
+All users of R (or SEM) are invited to submit functions or ideas for functions.
+###############################################################################
+
+Attaching package: ‘semTools’
+
+The following objects are masked from ‘package:psych’:
+
+    reliability, skew
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘ggplot2’
+
+The following objects are masked from ‘package:psych’:
+
+    %+%, alpha
+
+
+Attaching package: ‘readr’
+
+The following object is masked from ‘package:semTools’:
+
+    clipboard
+
+corrplot 0.95 loaded
+Setup complete. All libraries loaded and directories mapped.
+
+Loading clean dataset...
+Rows: 252 Columns: 53
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): age, education, occupation, city, prior_recycling, infrastructure,...
+dbl (45): EC1, EC2, EC3, EC4, EC5, AW1, AW2, AW3, AW4, AW5, FI1, FI2, FI3, F...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+Running Mediation Model (Bootstrapping for strict accuracy)...
+
+=== MEDIATION (INDIRECT EFFECTS) RESULTS ===
+ Specific_Path    Estimate      p_value Significant
+ ind_EC_ATT_RI  0.22753265 3.510436e-03         YES
+ ind_AW_ATT_RI  0.13114278 4.365584e-02         YES
+ ind_AW_PBC_RI  0.30774257 5.636986e-04         YES
+ ind_FI_ATT_RI  0.06419145 5.494493e-02          NO
+ ind_FI_PBC_RI  0.07697100 6.115924e-03         YES
+ ind_PC_ATT_RI -0.06203028 8.474058e-03         YES
+      total_EC  0.11913574 3.863084e-01          NO
+      total_AW  0.51869335 4.341176e-08         YES
+
+=== MODERATION ANALYSIS (Age Group Differences) ===
+Testing if the policy drivers differ between demographics...
+Warning message:
+lavaan->lavParTable():  
+   using a single label per parameter in a multiple group setting implies 
+   imposing equality constraints across all the groups; If this is not 
+   intended, either remove the label(s), or use a vector of labels (one for 
+   each group); See the Multiple groups section in the man page of 
+   model.syntax. 
+
+Extracting differences in path significance between Younger and Older groups:
+ Dependent Predictor Group        Beta      p_value
+       ATT        EC     1  0.44456707 1.828027e-11
+       ATT        AW     1  0.27047870 3.756836e-07
+       ATT        FI     1  0.19202333 1.113208e-04
+       ATT        PC     1 -0.16939914 1.101283e-06
+       PBC        EC     1  0.04511678 5.526856e-01
+       PBC        AW     1  0.77665707 0.000000e+00
+       PBC        FI     1  0.22968702 1.856764e-04
+        RI       ATT     1  0.40183299 1.768699e-05
+        RI       PBC     1  0.35756923 8.259590e-06
+        RI        EC     1 -0.12473788 1.280086e-01
+        RI        AW     1  0.12761752 1.754817e-01
+        RI        FI     1  0.32605747 3.035501e-07
+        RI        PC     1 -0.14401980 6.673120e-04
+       ATT        EC     2  0.44456707 1.828027e-11
+       ATT        AW     2  0.27047870 3.756836e-07
+       ATT        FI     2  0.19202333 1.113208e-04
+       ATT        PC     2 -0.16939914 1.101283e-06
+       PBC        EC     2  0.04511678 5.526856e-01
+       PBC        AW     2  0.77665707 0.000000e+00
+       PBC        FI     2  0.22968702 1.856764e-04
+        RI       ATT     2  0.40183299 1.768699e-05
+        RI       PBC     2  0.35756923 8.259590e-06
+        RI        EC     2 -0.12473788 1.280086e-01
+        RI        AW     2  0.12761752 1.754817e-01
+        RI        FI     2  0.32605747 3.035501e-07
+        RI        PC     2 -0.14401980 6.673120e-04
+
+=== 06 H8: AGE MODERATION ===
+
+=== H8: AGE MODERATION (PATH ANALYSIS w/ BOOTSTRAP) ===
+
+Group 1: Younger (N = 62 ) |  Group 2: Older (N = 190 )
+
+ Dependent Predictor Beta_G1 p_G1_exact Sig_G1           CI_G1 Beta_G2
+   RI_mean  ATT_mean   0.536     0.0313      *  [-0.021, 0.89]   0.259
+  PBC_mean   AW_mean   0.880     0.0000      *  [0.701, 1.125]   0.632
+   RI_mean   AW_mean  -0.032     0.8721     ns  [-0.419, 0.37]   0.206
+   RI_mean   FI_mean   0.156     0.1186     ns  [-0.031, 0.37]   0.365
+   RI_mean  PBC_mean   0.502     0.0025      *  [0.172, 0.815]   0.300
+  ATT_mean   PC_mean  -0.003     0.9826     ns [-0.259, 0.215]  -0.193
+  ATT_mean   FI_mean   0.017     0.8966     ns [-0.172, 0.346]   0.193
+   RI_mean   PC_mean  -0.050     0.6352     ns [-0.289, 0.127]  -0.202
+  PBC_mean   EC_mean   0.037     0.7836     ns [-0.279, 0.261]   0.171
+  PBC_mean   FI_mean   0.090     0.4825     ns [-0.167, 0.323]   0.217
+  ATT_mean   EC_mean   0.376     0.1071     ns [-0.023, 0.828]   0.444
+   RI_mean   EC_mean  -0.088     0.7588     ns [-0.414, 0.589]  -0.036
+  ATT_mean   AW_mean   0.303     0.0333      *  [0.006, 0.581]   0.256
+ p_G2_exact Sig_G2            CI_G2  Diff
+     0.0071      *    [0.07, 0.456] 0.277
+     0.0000      *     [0.5, 0.775] 0.247
+     0.0096      *   [0.061, 0.365] 0.239
+     0.0000      *    [0.25, 0.477] 0.209
+     0.0004      *    [0.128, 0.45] 0.202
+     0.0000      *  [-0.27, -0.112] 0.191
+     0.0001      *   [0.097, 0.287] 0.176
+     0.0001      * [-0.305, -0.097] 0.152
+     0.0772     ns  [-0.035, 0.352] 0.135
+     0.0001      *    [0.094, 0.31] 0.127
+     0.0000      *   [0.309, 0.582] 0.068
+     0.7088     ns   [-0.218, 0.15] 0.053
+     0.0000      *   [0.146, 0.367] 0.048
+
+=== 07 H9: EXPERIENCE MODERATION ===
+
+=== H9: PRIOR EXPERIENCE MODERATION (PATH ANALYSIS w/ BOOTSTRAP) ===
+
+Group 1: High Experience (N = 87 ) |  Group 2: Low Experience (N = 165 )
+
+ Dependent Predictor Beta_G1 p_G1_exact Sig_G1           CI_G1 Beta_G2
+  PBC_mean   EC_mean   0.457     0.0000      *   [0.242, 0.64]  -0.028
+  PBC_mean   FI_mean  -0.173     0.1358     ns [-0.395, 0.064]   0.266
+   RI_mean   FI_mean  -0.079     0.4180     ns  [-0.272, 0.13]   0.351
+  ATT_mean   FI_mean  -0.135     0.3134     ns [-0.347, 0.179]   0.199
+   RI_mean  PBC_mean   0.123     0.3167     ns [-0.105, 0.374]   0.422
+  ATT_mean   EC_mean   0.305     0.1141     ns [-0.057, 0.666]   0.545
+   RI_mean   AW_mean   0.269     0.0822     ns [-0.024, 0.586]   0.033
+  PBC_mean   AW_mean   0.548     0.0000      *  [0.383, 0.705]   0.668
+   RI_mean   EC_mean  -0.063     0.7465     ns [-0.382, 0.376]   0.043
+  ATT_mean   AW_mean   0.298     0.0018      *  [0.095, 0.471]   0.207
+   RI_mean  ATT_mean   0.393     0.0527     ns  [-0.02, 0.725]   0.314
+   RI_mean   PC_mean  -0.157     0.1721     ns [-0.398, 0.055]  -0.140
+  ATT_mean   PC_mean  -0.156     0.1830     ns [-0.439, 0.018]  -0.158
+ p_G2_exact Sig_G2            CI_G2  Diff
+     0.7422     ns  [-0.202, 0.126] 0.485
+     0.0000      *   [0.182, 0.356] 0.440
+     0.0000      *   [0.227, 0.492] 0.431
+     0.0005      *   [0.094, 0.319] 0.334
+     0.0000      *   [0.215, 0.579] 0.299
+     0.0000      *   [0.395, 0.687] 0.241
+     0.6940     ns  [-0.115, 0.216] 0.236
+     0.0000      *   [0.516, 0.814] 0.119
+     0.5946     ns  [-0.108, 0.212] 0.106
+     0.0008      *   [0.084, 0.326] 0.091
+     0.0015      *   [0.107, 0.495] 0.079
+     0.0088      * [-0.241, -0.031] 0.017
+     0.0022      * [-0.254, -0.054] 0.002
+
+
+=== FINAL LOCKED XGBOOST METRICS ===
+Test Set N: 51
+Accuracy: 0.8039
+AUC-ROC: 0.9136
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.82      0.75      0.78        24
+           1       0.79      0.85      0.82        27
+
+    accuracy                           0.80        51
+   macro avg       0.81      0.80      0.80        51
+weighted avg       0.80      0.80      0.80        51
+
+Raw Confusion Matrix Array:
+array([[18,  6],
+       [ 4, 23]])
+
+5-Fold CV Accuracy: 0.777 +/- 0.036
+
+SHAP Importance Ranking (Top to Bottom):
+            Feature  Mean |SHAP|
+           PBC_mean     0.822821
+            PC_mean     0.768350
+           ATT_mean     0.701150
+            AW_mean     0.639526
+            FI_mean     0.532151
+            age_num     0.228860
+            edu_num     0.201031
+prior_recycling_num     0.141015
+            EC_mean     0.081677

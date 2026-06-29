@@ -35,8 +35,7 @@ Open your browser to `http://localhost:5173`.
 
 ## Machine Learning Models
 
-The `backend/models/` directory contains:
-* `recycling_intention_model.pkl`: A trained XGBoost classifier (81.2% accuracy) for predicting adoption probability.
+* `recycling_intention_model.pkl`: A trained XGBoost classifier (80.4% accuracy) for predicting adoption probability.
 * `scaler.pkl`: The feature scaler used to normalize inputs before prediction.
 
 *Note: These files are managed via Git Large File Storage (LFS).*

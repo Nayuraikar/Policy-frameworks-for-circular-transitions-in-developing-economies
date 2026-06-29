@@ -42,7 +42,7 @@ cat("\n[TARGET: All Loadings ideally > 0.60 or 0.70. Anything < 0.50 is a red fl
 
 # ── 3. COMPOSITE RELIABILITY (CR) AND AVE (UPDATED SYNTAX) ──
 cat("\n=== RELIABILITY (CR) & CONVERGENT VALIDITY (AVE) ===\n")
-cr_values <- semTools::compRelSEM(cfa_fit)
+cr_values <- sapply(semTools::compRelSEM(cfa_fit), as.numeric)
 ave_values <- semTools::AVE(cfa_fit)
 rel_table_modern <- rbind(CR = cr_values, AVE = ave_values)
 print(round(rel_table_modern, 3))
